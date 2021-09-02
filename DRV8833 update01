@@ -281,38 +281,4 @@ float readTSData( long TSChannel, unsigned int TSField ) {
 }
 
 
-//變回666
-    int h = 666;
-    myservo.write(90);
-    
-    if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
-                          {  
-                            
-                             client.print(String("GET ") + resource + apiKey + "&field3=" + h +    
-                              " HTTP/1.1\r\n" +
-                              "Host: " + server + "\r\n" + 
-                              "Connection: close\r\n\r\n");
-  
-                          }
-      
-    
-   }
-          
- 
- 
 
-
-}
-
-
-float readTSData( long TSChannel, unsigned int TSField ) {
-
-  float data =  ThingSpeak.readFloatField( TSChannel, TSField, readAPIKey );
-  Serial.println( " 跑函式Data read from ThingSpeak: " + String( data ) );
-  return data;
-
- 
-  
-
-
-}
