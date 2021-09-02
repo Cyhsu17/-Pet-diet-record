@@ -33,9 +33,9 @@ float h3; //宣告暫存的變數h3 存變化值(h-h2)
 float sum=0; //宣告一個變數存總計
 
 //計時器
-int starttime; // 計時器值放入的變數
+unsigned long starttime; // 計時器值放入的變數
 int i=0;       //計數(0~13) 存到相應的位置
-int save[13];  //陣列 存值0~13
+float save[13];  //陣列 存值0~13
 float total1=0;   //每筆存值相加
 float total2=0;
 float avg=0;   //每七天平均相減
@@ -93,6 +93,8 @@ void loop()
 {
                            
       starttime =millis(); //開計時器
+      Serial.print("starttime:"); 
+      Serial.println(starttime);  
       Serial.println(scale.get_units(10), 0); //天秤取10次平均
 
        scale.power_down();             // 進入睡眠模式
@@ -136,7 +138,7 @@ void loop()
 
 
 
-      if ((starttime%60)==0){ //每過60s 記錄一次
+      if ((starttime%10000)==0){ //每過100s 記錄一次
                          float avg1;  //1~7天 sum平均
                          float avg2;  //8~14天 sum平均
                          save[i]=sum; //存檔
